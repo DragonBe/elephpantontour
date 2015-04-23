@@ -1,0 +1,11 @@
+[production]
+flickr.key = ""
+flickr.secret = ""
+
+instagram.key = ""
+instagram.secret = ""
+instagram.token = ""
+
+[staging: production]
+[testing: production]
+[development: production]

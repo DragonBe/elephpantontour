@@ -1,0 +1,44 @@
+<?php
+    $this->headTitle('Latest "elePHPant" photos');
+    $this->headMeta()->appendHttpEquiv('refresh', 180);
+?>
+<div id="contentContainer">
+
+<?php foreach ($this->results as $result): ?>
+
+<div class="imageContainer rounded">
+    <div class="imageBlock">
+        <a href="<?php echo $this->escape($result->Small->clickUri) ?>" 
+           title="<?php echo $this->escape($result->title) ?>" style="background-image: url('<?php echo $this->escape($result->Medium->uri) ?>')"
+           class="inner_rounded pic">
+            <?php echo $this->escape($result->title) ?>
+        </a>
+    </div>
+    <div class="imageMeta">
+        <?php $date = new DateTime($result->datetaken) ?>
+        <p><a href="http://www.flickr.com/photos/<?php echo $this->escape($result->ownername) ?>" title="<?php echo $this->escape($result->ownername) ?>"><?php echo $this->escape($result->ownername) ?></a> 
+            <br />on <?php echo $this->escape($date->format('Y-m-d')) ?></p>
+    </div>
+</div>
+
+<?php endforeach; ?>
+
+<?php foreach ($this->instagram->data as $data): ?>
+
+    <div class="imageContainer rounded">
+        <div class="imageBlock">
+            <a href="<?php echo $this->escape($data->link) ?>"
+               title="<?php echo $this->escape($data->caption->text) ?>" style="background-image: url('<?php echo $this->escape($data->images->low_resolution->url) ?>')"
+               class="inner_rounded pic">
+                <?php echo $this->escape($data->caption->text) ?>
+            </a>
+        </div>
+        <div class="imageMeta">
+            <?php $date = new DateTime("@{$data->created_time}") ?>
+            <p><a href="<?php echo $this->escape($data->link) ?>" title="<?php echo $this->escape($data->caption->text) ?>"><?php echo $this->escape($data->caption->text) ?></a>
+                <br />on <?php echo $this->escape($date->format('Y-m-d')) ?></p>
+        </div>
+    </div>
+
+<?php endforeach; ?>
+</div>
