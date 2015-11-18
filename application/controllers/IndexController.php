@@ -11,8 +11,13 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $config = new Zend_Config_Ini(
-            APPLICATION_PATH . '/configs/api.ini', APPLICATION_ENV
+            APPLICATION_PATH . '/configs/api.ini.dist'
         );
+        if (file_exists(APPLICATION_PATH . '/configs/api.ini')) {
+            $config = new Zend_Config_Ini(
+                APPLICATION_PATH . '/configs/api.ini', APPLICATION_ENV
+            );
+        }
         $config->flickr->key = FLICKR_API_KEY;
         $config->flickr->secret = FLICKR_API_SECRET;
 
