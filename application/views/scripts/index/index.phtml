@@ -23,22 +23,24 @@
 
 <?php endforeach; ?>
 
-<?php foreach ($this->instagram->data as $data): ?>
+<?php if (null !== $this->instagram): ?>
+    <?php foreach ($this->instagram->data as $data): ?>
 
-    <div class="imageContainer rounded">
-        <div class="imageBlock">
-            <a href="<?php echo $this->escape($data->link) ?>"
-               title="<?php echo $this->escape($data->caption->text) ?>" style="background-image: url('<?php echo $this->escape($data->images->low_resolution->url) ?>')"
-               class="inner_rounded pic">
-                <?php echo $this->escape($data->caption->text) ?>
-            </a>
+        <div class="imageContainer rounded">
+            <div class="imageBlock">
+                <a href="<?php echo $this->escape($data->link) ?>"
+                   title="<?php echo $this->escape($data->caption->text) ?>" style="background-image: url('<?php echo $this->escape($data->images->low_resolution->url) ?>')"
+                   class="inner_rounded pic">
+                    <?php echo $this->escape($data->caption->text) ?>
+                </a>
+            </div>
+            <div class="imageMeta">
+                <?php $date = new DateTime("@{$data->created_time}") ?>
+                <p><a href="<?php echo $this->escape($data->link) ?>" title="<?php echo $this->escape($data->caption->text) ?>"><?php echo $this->escape($data->caption->text) ?></a>
+                    <br />on <?php echo $this->escape($date->format('Y-m-d')) ?></p>
+            </div>
         </div>
-        <div class="imageMeta">
-            <?php $date = new DateTime("@{$data->created_time}") ?>
-            <p><a href="<?php echo $this->escape($data->link) ?>" title="<?php echo $this->escape($data->caption->text) ?>"><?php echo $this->escape($data->caption->text) ?></a>
-                <br />on <?php echo $this->escape($date->format('Y-m-d')) ?></p>
-        </div>
-    </div>
 
-<?php endforeach; ?>
+    <?php endforeach; ?>
+<?php endif ?>
 </div>

@@ -1,6 +1,2 @@
 data/cache/zend_cache*
-/nbproject/private/nbproject/
-nbproject/
-/.openshift/
-.idea/
-configs/api.ini
+application/configs/api.ini

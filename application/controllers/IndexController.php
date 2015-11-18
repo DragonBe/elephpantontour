@@ -23,21 +23,21 @@ class IndexController extends Zend_Controller_Action
         );
         $cache = Zend_Cache::factory('Core', 'File', $frontEndOptions, $backEndOptions);
 
-        if (false === ($results = $cache->load('flickr_elephpants'))) {
+//        if (false === ($results = $cache->load('flickr_elephpants'))) {
             $flickr = new Application_Service_Flickr($config);
             $results = $flickr->searchForTag('elephpant');
-            $cache->save($results, 'flickr_elephpants');
-        }
+//            $cache->save($results, 'flickr_elephpants');
+//        }
 
-        if (false === ($data = $cache->load('insta_elephpants'))) {
-            $instagram = new Application_Service_Instagram($config);
-            $data = $instagram->searchForTag('elephpant');
-            $cache->save($data, 'insta_elephpants');
-        }
+//        if (false === ($data = $cache->load('insta_elephpants'))) {
+//            $instagram = new Application_Service_Instagram($config);
+//            $data = $instagram->searchForTag('elephpant');
+//            $cache->save($data, 'insta_elephpants');
+//        }
 
         $this->view->assign(array (
             'results' => $results,
-            'instagram' => $data,
+//            'instagram' => $data,
         ));
     }
 
