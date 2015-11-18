@@ -1,5 +1,5 @@
-!data/cache/README.md
-data/cache/*
-!data/logs/README.md
-data/logs/*
+!/data/cache/README.md
+!/data/logs/README.md
+/data/logs/*.log
+/data/cache/zend_cache*
 application/configs/api.ini
