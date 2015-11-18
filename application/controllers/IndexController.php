@@ -15,11 +15,11 @@ class IndexController extends Zend_Controller_Action
         );
         if (file_exists(APPLICATION_PATH . '/configs/api.ini')) {
             $config = new Zend_Config_Ini(
-                APPLICATION_PATH . '/configs/api.ini', APPLICATION_ENV
+                APPLICATION_PATH . '/configs/api.ini', APPLICATION_ENV, array ('allowModifications' => true)
             );
         }
-        $config->flickr->key = FLICKR_API_KEY;
-        $config->flickr->secret = FLICKR_API_SECRET;
+        $config->flickr->key = getenv(FLICKR_API_KEY);
+        $config->flickr->secret = getenv(FLICKR_API_SECRET);
 
 
         $frontEndOptions = array (
@@ -35,7 +35,7 @@ class IndexController extends Zend_Controller_Action
         if (false === ($results = $cache->load('flickr_elephpants'))) {
             $flickr = new Application_Service_Flickr($config);
             $results = $flickr->searchForTag('elephpant');
-            var_dump($results);
+            //var_dump($results);
             $cache->save($results, 'flickr_elephpants');
         }
 
