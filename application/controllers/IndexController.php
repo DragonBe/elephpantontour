@@ -31,9 +31,11 @@ class IndexController extends Zend_Controller_Action
         );
         $cache = Zend_Cache::factory('Core', 'File', $frontEndOptions, $backEndOptions);
 
+        $cache->remove('flickr_elephpants');
         if (false === ($results = $cache->load('flickr_elephpants'))) {
             $flickr = new Application_Service_Flickr($config);
             $results = $flickr->searchForTag('elephpant');
+            var_dump($results);
             $cache->save($results, 'flickr_elephpants');
         }
 
