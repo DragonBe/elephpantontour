@@ -21,6 +21,11 @@ class IndexController extends Zend_Controller_Action
         $config->flickr->key = getenv(FLICKR_API_KEY);
         $config->flickr->secret = getenv(FLICKR_API_SECRET);
 
+        $logger = new Zend_Log();
+        $writer = new Zend_Log_Writer_Stream(APPLICATION_PATH . '/../data/logs/application.log');
+        $logger->addWriter($writer);
+        $logger->addFilter(new Zend_Log_Filter_Priority(Zend_Log::DEBUG));
+
 
         $frontEndOptions = array (
             'lifetime' => 3600,
@@ -33,8 +38,10 @@ class IndexController extends Zend_Controller_Action
 
         $cache->remove('flickr_elephpants');
         if (false === ($results = $cache->load('flickr_elephpants'))) {
+            $logger->log('Retrieving elePHPants from the net', Zend_Log::INFO);
             $flickr = new Application_Service_Flickr($config);
             $results = $flickr->searchForTag('elephpant');
+            $logger->log('Found ' . count($results) . ' elephpants to be displayed', Zend_Log::INFO);
             //var_dump($results);
             $cache->save($results, 'flickr_elephpants');
         }
