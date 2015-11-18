@@ -13,7 +13,10 @@ class IndexController extends Zend_Controller_Action
         $config = new Zend_Config_Ini(
             APPLICATION_PATH . '/configs/api.ini', APPLICATION_ENV
         );
-        
+        $config->flickr->key = FLICKR_API_KEY;
+        $config->flickr->secret = FLICKR_API_SECRET;
+
+
         $frontEndOptions = array (
             'lifetime' => 3600,
             'automatic_serialization' => true,
@@ -23,11 +26,11 @@ class IndexController extends Zend_Controller_Action
         );
         $cache = Zend_Cache::factory('Core', 'File', $frontEndOptions, $backEndOptions);
 
-//        if (false === ($results = $cache->load('flickr_elephpants'))) {
+        if (false === ($results = $cache->load('flickr_elephpants'))) {
             $flickr = new Application_Service_Flickr($config);
             $results = $flickr->searchForTag('elephpant');
-//            $cache->save($results, 'flickr_elephpants');
-//        }
+            $cache->save($results, 'flickr_elephpants');
+        }
 
 //        if (false === ($data = $cache->load('insta_elephpants'))) {
 //            $instagram = new Application_Service_Instagram($config);
