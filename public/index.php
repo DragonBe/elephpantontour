@@ -8,6 +8,13 @@ defined('APPLICATION_PATH')
 defined('APPLICATION_ENV')
     || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 
+
+// Constant keys
+defined('FLICKR_API_KEY')
+    || define('FLICKR_API_KEY', (getenv('FLICKR_API_KEY') ? getenv('FLICKR_API_KEY') : ''));
+defined('FLICKR_API_SECRET')
+    || define('FLICKR_API_SECRET', (getenv('FLICKR_API_SECRET') ? getenv('FLICKR_API_SECRET') : ''));
+
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(APPLICATION_PATH . '/../library'),

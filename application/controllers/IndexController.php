@@ -18,8 +18,8 @@ class IndexController extends Zend_Controller_Action
                 APPLICATION_PATH . '/configs/api.ini', APPLICATION_ENV, array ('allowModifications' => true)
             );
         }
-        $config->flickr->key = getenv(FLICKR_API_KEY);
-        $config->flickr->secret = getenv(FLICKR_API_SECRET);
+        $config->flickr->key    = FLICKR_API_KEY;
+        $config->flickr->secret = FLICKR_API_SECRET;
 
         $logger = new Zend_Log();
         $writer = new Zend_Log_Writer_Stream(APPLICATION_PATH . '/../data/logs/application.log');
