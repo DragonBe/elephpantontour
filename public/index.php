@@ -34,6 +34,7 @@ if (php_sapi_name() === 'cli-server' && is_file($filename)) {
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <style type="text/css"> .page-footer { padding-top: 85px; padding-bottom: 45px; } .inverse { background-color: #333333; color: #ffffff; } </style>
     </head>
     <body>
 
@@ -53,13 +54,13 @@ if (php_sapi_name() === 'cli-server' && is_file($filename)) {
 
                     <div class="col-sm-6 col-md-4 col-xs-4">
                         <div class="thumbnail">
-                            <a href="<?php echo $flickrImage['imageRef'] ?>" title="<?php echo $flickrImage['imageTitle'] ?> by <?php echo $flickrImage['authorName'] ?>" rel="nofollow">
+                            <a href="<?php echo $flickrImage['imageRef'] ?>" target="_blank" title="<?php echo $flickrImage['imageTitle'] ?> by <?php echo $flickrImage['authorName'] ?>" rel="nofollow">
                                 <img src="<?php echo $flickrImage['imageLink'] ?>" class="img-responsive img-rounded">
                             </a>
                             <div class="caption text-center">
-                                <p><a href="<?php echo $flickrImage['imageRef'] ?>" title="<?php echo $flickrImage['imageTitle'] ?> by <?php echo $flickrImage['authorName'] ?>" rel="nofollow">
+                                <p><strong>Source <a href="https://flickr.com" target="_blank" rel="nofollow" title="Flickr.com">Flickr.com</a></strong><br><a href="<?php echo $flickrImage['imageRef'] ?>" target="_blank" title="<?php echo $flickrImage['imageTitle'] ?> by <?php echo $flickrImage['authorName'] ?>" rel="nofollow">
                                     <?php echo $flickrImage['imageTitle'] ?>
-                                </a> by <a href="<?php echo $flickrImage['authorLink'] ?>" title="<?php echo $flickrImage['authorName'] ?>" rel="nofollow">
+                                </a> by <a href="<?php echo $flickrImage['authorLink'] ?>" target="_blank" title="<?php echo $flickrImage['authorName'] ?>" rel="nofollow">
                                     <?php echo $flickrImage['authorName'] ?>
                                 </a></p>
                             </div>
@@ -74,6 +75,15 @@ if (php_sapi_name() === 'cli-server' && is_file($filename)) {
                 <?php endforeach ?>
             </div>
         </div>
+
+        <footer class="page-footer inverse">
+            <div class="container">
+                <p><span class="pull-right">Pictures of #elephpant taken by members of the PHP Community.</span>
+                    This page was created by <a href="https://twitter.com/DragonBe" target="_blank" rel="nofollow">@DragonBe</a>.<br>
+                    Code licenced MIT and hosted on GitHub.</p>
+
+            </div>
+        </footer>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
