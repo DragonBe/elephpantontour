@@ -27,7 +27,7 @@ class Horder
 
     public function __construct()
     {
-        $guzzleClient = new GuzzleClient;
+        $guzzleClient = new GuzzleClient(['verify' => false]);
         $this->flickr = new FlickrClient($guzzleClient, FLICKR_API_KEY, FLICKR_API_SEC);
     }
 
