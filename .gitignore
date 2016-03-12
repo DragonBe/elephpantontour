@@ -3,3 +3,4 @@
 /data/logs/*.log
 /data/cache/zend_cache*
 application/configs/api.ini
+/vendor
