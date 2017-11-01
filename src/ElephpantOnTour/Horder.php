@@ -5,8 +5,8 @@ use \GuzzleHttp\Client as GuzzleClient;
 use \ElephpantOnTour\Flickr\Client as FlickrClient;
 
 // Flickr API Keys: https://www.flickr.com/services/apps/by/dragonbe
-define('FLICKR_API_KEY', '5b1f2614e24835b336d422967e09783e');
-define('FLICKR_API_SEC', 'a84b552cdbdb7c27');
+define('FLICKR_API_KEY', getenv('FLICKR_API_KEY'));
+define('FLICKR_API_SEC', getenv('FLICKR_API_SEC'));
 
 /**
  * Class Horder

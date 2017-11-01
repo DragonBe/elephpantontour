@@ -41,11 +41,11 @@ class Client
     public function fetch($count = 0, $offset = 0)
     {
         $url = 'https://api.flickr.com/services/feeds/photos_public.gne';
-        $params = array (
+        $params = [
             'tags' => 'elephpant,elephpants',
             'tagmode' => 'any',
             'format' => 'xml',
-        );
+        ];
 
         $feedFile = __DIR__ . '/../../../feed.xml';
         $body = file_get_contents($feedFile);
@@ -53,7 +53,9 @@ class Client
             $response = $this->guzzleClient->request(
                 'GET',
                 $url,
-                array('query' => $params)
+                [
+                    'query' => $params,
+                ]
             );
             $body = $response->getBody();
             file_put_contents($feedFile, $body);
